@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 const { customAlphabet } = require('nanoid')
 
-const Ama = require('../backend/logic/ama');
+const Ama = require('./logic/ama');
 const sessions = {};
 
 app.post('/', function(req, res) {
