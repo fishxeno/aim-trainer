@@ -26,6 +26,8 @@ app.post('/join', function(req, res) {
     console.log("join request received")
     const sessionIdInput = req.body.session_id;
     console.log("received sessionIdInput: " + sessionIdInput)
+    console.log("tf: " + sessions[sessionIdInput].startedTF())
+    console.log("no tf: " + sessions[sessionIdInput].started)
     if (sessions[sessionIdInput] == null || sessions[sessionIdInput].started == false) {
         res.status(404).json({success: false})
     } else if (sessions[sessionIdInput].startedTF() == true) {
