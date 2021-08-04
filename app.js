@@ -43,6 +43,7 @@ app.post('/join', function (req, res) {
         console.log("start status: " + AMA.checkStarted())
         if (AMA.checkStarted() == true || AMA.checkStarted() == "true") {
             AMA.userNames(userName);
+            console.log(userName)
             console.log("true start")
             res.status(200).json({ success: true })
         } else {
