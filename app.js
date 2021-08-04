@@ -16,6 +16,8 @@ app.post('/', function(req, res) {
     const ownerId = nanoid()
     console.log(sessionId)
     sessions[sessionId] = new Ama();
+    console.log("sessions is : " + sessions[sessionId])
+    sessions[sessionId].started = true;
     res.status(201).json({session_Id: sessionId, owner_Id: ownerId})
 })
 
