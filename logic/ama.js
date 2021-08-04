@@ -1,7 +1,7 @@
 module.exports = class {
     constructor() {
-        this.highScore = "";
-        this.userName = "";
+        this.highScore = [];
+        this.userName = [];
         this.started = false;
         this.ownerId = "";
     }

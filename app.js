@@ -24,7 +24,7 @@ app.post('/', function(req, res) {
 
 app.post('/join', function(req, res) {
     console.log("join request received")
-    const sessionIdInput = req.body.session_id;
+    const sessionIdInput = req.body.session_id.sessionIdInput;
     console.log(sessions)
     console.log(sessionIdInput)
     const Ama = sessions[sessionIdInput]
