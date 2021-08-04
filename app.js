@@ -25,11 +25,13 @@ app.post('/', function(req, res) {
 app.post('/join', function(req, res) {
     console.log("join request received")
     const sessionIdInput = req.body.session_id;
+    console.log(sessions)
+    console.log(sessionIdInput)
     const Ama = sessions[sessionIdInput]
     
     console.log("received sessionIdInput: " + sessionIdInput)
     //console.log("tf: " + sessions[sessionIdInput].startedTF())
-    console.log("start status: " + sessions[sessionIdInput].checkStarted())
+    console.log("start status: " + Ama.checkStarted())
     if (sessions[sessionIdInput] == null || sessions[sessionIdInput].started == false) {
         res.status(404).json({success: false})
     } else if (sessions[sessionIdInput].startedTF() == true) {
