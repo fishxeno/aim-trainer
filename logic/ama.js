@@ -1,20 +1,27 @@
 module.exports = class {
     constructor() {
-        this.email = "";
         this.highScore = "";
         this.userName = "";
+        this.started = false;
+        this.ownerId = "";
     }
-    email(email) {
-        this.email = email;
-        return [this.email];
+    owner(ownerId) {
+        this.ownerId = ownerId;
+        return [this.ownerId];
+    }
+    checkOwnerId() {
+        return [this.ownerId]
     }
     highScore(highScore) {
         this.highScore = highScore;
-        return [this.ownerId];
+        return [this.highScore];
     }
     userName(userName) {
         this.userName = userName;
         return [this.userName];
     }
-
+    startedTF(TF) {//true false
+        this.started = TF;
+        return [this.started];
+    }
 }

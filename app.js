@@ -13,8 +13,21 @@ app.post('/', function(req, res) {
     console.log("request received")
     const nanoid = customAlphabet('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 10);
     const sessionId = nanoid()
+    const ownerId = nanoid()
+    console.log(sessionId)
     sessions[sessionId] = new Ama();
-    res.status(201).json({session_Id: sessionId})
+    res.status(201).json({session_Id: sessionId, owner_Id: ownerId})
+})
+
+app.post('/join', function(req, res) {
+    console.log("join request received")
+    const sessionIdInput = req.body.session_id;
+    console.log("received sessionIdInput: " + sessionIdInput)
+    if (sessions[sessionIdInput] == null || sessions[sessionIdInput].startedTF() == false) {
+        res.status(404).json({success: false})
+    } else if (sessions[sessionIdInput].startedTF() == true) {
+        res.status(200).json({success: true})
+    }
 })
 
 app.post('/submit', function (req, res) {
