@@ -32,15 +32,15 @@ app.post('/join', function (req, res) {
     console.log(sessions)
     console.log(userName)
     console.log(sessionIdInput)
-    const Ama = sessions[sessionIdInput]
+    const AMA = sessions[sessionIdInput]
     console.log("below this is Ama")
-    console.log(Ama)
+    console.log(AMA)
     console.log("received sessionIdInput: " + sessionIdInput)
     try {
-        console.log("ownerId" + Ama.checkOwnerId());
-        console.log("start status: " + Ama.checkStarted())
-        if (Ama.checkStarted() == true || Ama.checkStarted() == "true") {
-            Ama.userName(userName);
+        console.log("ownerId" + AMA.checkOwnerId());
+        console.log("start status: " + AMA.checkStarted())
+        if (AMA.checkStarted() == true || AMA.checkStarted() == "true") {
+            AMA.userName(userName);
             console.log("true start")
             res.status(200).json({ success: true })
         } else {
@@ -51,8 +51,6 @@ app.post('/join', function (req, res) {
         console.error(error);
         res.status(404).json({ success: false })
     }
-
-
 })
 
 app.post('/submit', function (req, res) {
