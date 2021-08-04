@@ -32,8 +32,7 @@ app.post('/join', function (req, res) {
     console.log("below this is Ama")
     console.log(Ama)
     console.log("received sessionIdInput: " + sessionIdInput)
-    
-    if (Ama != undefined || Ama != null || Ama != "undefined") {
+    try {
         console.log("start status: " + Ama.checkStarted())
         if (Ama.checkStarted() == true || Ama.checkStarted() == "true") {
             Ama.userName(userName);
@@ -43,9 +42,12 @@ app.post('/join', function (req, res) {
             console.log("false start")
             res.status(404).json({ success: false })
         }
-    } else {
+    } catch (error) {
+        console.error(error);
         res.status(404).json({ success: false })
     }
+
+
 })
 
 app.post('/submit', function (req, res) {
