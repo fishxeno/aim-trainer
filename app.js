@@ -16,7 +16,7 @@ app.post('/', function(req, res) {
     const ownerId = nanoid()
     console.log(sessionId)
     sessions[sessionId] = new Ama();
-    console.log("sessions is : " + sessions[sessionId])
+    console.log("sessions is : ")
     sessions[sessionId].started = true;
     console.log(sessions[sessionId])
     res.status(201).json({session_Id: sessionId, owner_Id: ownerId})
@@ -25,9 +25,11 @@ app.post('/', function(req, res) {
 app.post('/join', function(req, res) {
     console.log("join request received")
     const sessionIdInput = req.body.session_id;
+    const Ama = sessions[sessionIdInput]
+    
     console.log("received sessionIdInput: " + sessionIdInput)
-    console.log("tf: " + sessions[sessionIdInput].startedTF())
-    console.log("no tf: " + sessions[sessionIdInput].started)
+    //console.log("tf: " + sessions[sessionIdInput].startedTF())
+    console.log("start status: " + sessions[sessionIdInput].checkStarted())
     if (sessions[sessionIdInput] == null || sessions[sessionIdInput].started == false) {
         res.status(404).json({success: false})
     } else if (sessions[sessionIdInput].startedTF() == true) {

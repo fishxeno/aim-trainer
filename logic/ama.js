@@ -12,6 +12,9 @@ module.exports = class {
     checkOwnerId() {
         return [this.ownerId]
     }
+    checkStarted() {
+        return [this.started]
+    }
     highScore(highScore) {
         this.highScore = highScore;
         return [this.highScore];
