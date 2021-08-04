@@ -15,25 +15,22 @@ module.exports = class {
     checkStarted() {
         return [this.started]
     }
-    highScore(highScore) {
-        this.highScore = highScore;
-        return [this.highScore];
-    }
     userName(userName) {
-        this.userName = userName;
+        this.userName.push(userName)
         return [this.userName];
     }
     startedTF(TF) {//true false
         this.started = TF;
         return [this.started];
     }
-    highScore(text,id) {
+    highScore(score ,userId) {
         //id is id of username
-        const strID = "" + id;//turns it into str
-        if (!(strID in this.highScore)) {//
-            this.highScore[strID] = [];
+        const StrScore = "" + score;
+        const strId = "" + userId;//turns it into str
+        if (!(strId in this.highScore)) {//
+            this.highScore[strId] = [];
         }
-        this["highScore"][strID].push(text);
+        this["highScore"][strId].push(StrScore);
         return [this.highScore];
     }
 }

@@ -9,7 +9,7 @@ const { customAlphabet } = require('nanoid')
 const Ama = require('./logic/ama');
 const sessions = {};
 
-app.post('/', function(req, res) {
+app.post('/', function (req, res) {
     console.log("request received")
     const nanoid = customAlphabet('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 10);
     const sessionId = nanoid()
@@ -19,23 +19,25 @@ app.post('/', function(req, res) {
     console.log("sessions is : ")
     sessions[sessionId].started = true;
     console.log(sessions[sessionId])
-    res.status(201).json({session_Id: sessionId, owner_Id: ownerId})
+    res.status(201).json({ session_Id: sessionId, owner_Id: ownerId })
 })
 
-app.post('/join', function(req, res) {
-    console.log("join request received")
+app.post('/join', function (req, res) {
     const sessionIdInput = req.body.session_id.sessionIdInput;
+    const userName = req.body.userName.userName;
     console.log(sessions)
+    console.log(userName)
     console.log(sessionIdInput)
     const Ama = sessions[sessionIdInput]
     console.log("received sessionIdInput: " + sessionIdInput)
     console.log("start status: " + Ama.checkStarted())
-    if (Ama.checkStarted() == false || Ama == null ) {
-        console.log("false start")
-        res.status(404).json({success: false})
-    } else if (Ama.checkStarted() == true || Ama.checkStarted() == "true") {
+    if (Ama.checkStarted() == true || Ama.checkStarted() == "true") {
+        Ama.userName(userName);
         console.log("true start")
-        res.status(200).json({success: true})
+        res.status(200).json({ success: true })
+    } else {
+        console.log("false start")
+        res.status(404).json({ success: false })
     }
 })
 
@@ -52,12 +54,12 @@ app.post('/submit', function (req, res) {
     res.status(201).json(AMA)
 });
 
-app.get('/leaderBoard', function(req,res) {
+app.get('/leaderBoard', function (req, res) {
 
     const sessionId = req.query.session_id;
     var scoreArr = [];
     var emailArr = [];
-    
+
     for (var i = 0; i < sessions.length; i++) {
         const keys = keysObject.keys(sessions)// return an array of emails
         const AMA = sessions[keys[i]];//the user details with email as key
