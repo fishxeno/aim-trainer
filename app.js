@@ -36,15 +36,18 @@ app.post('/join', function (req, res) {
     console.log("below this is Ama")
     console.log(AMA)
     console.log("received sessionIdInput: " + sessionIdInput)
-    console.log("ownerId" + AMA.checkOwnerId());
-    console.log("start status: " + AMA.checkStarted())
-    if (AMA.checkStarted() == true || AMA.checkStarted() == "true") {
-        AMA.userName(userName);
-        console.log("true start")
-        res.status(200).json({ success: true })
+    if (typeof AMA === "undefined") {
     } else {
-        console.log("false start")
-        res.status(404).json({ success: false })
+        console.log("ownerId" + AMA.checkOwnerId());
+        console.log("start status: " + AMA.checkStarted())
+        if (AMA.checkStarted() == true || AMA.checkStarted() == "true") {
+            AMA.userName(userName);
+            console.log("true start")
+            res.status(200).json({ success: true })
+        } else {
+            console.log("false start")
+            res.status(404).json({ success: false })
+        }
     }
 })
 
