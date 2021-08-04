@@ -31,12 +31,16 @@ app.post('/join', function (req, res) {
     const Ama = sessions[sessionIdInput]
     console.log("received sessionIdInput: " + sessionIdInput)
     console.log("start status: " + Ama.checkStarted())
-    if (Ama.checkStarted() == true || Ama.checkStarted() == "true") {
-        Ama.userName(userName);
-        console.log("true start")
-        res.status(200).json({ success: true })
+    if (Ama != undefined) {
+        if (Ama.checkStarted() == true || Ama.checkStarted() == "true") {
+            Ama.userName(userName);
+            console.log("true start")
+            res.status(200).json({ success: true })
+        } else {
+            console.log("false start")
+            res.status(404).json({ success: false })
+        }
     } else {
-        console.log("false start")
         res.status(404).json({ success: false })
     }
 })
