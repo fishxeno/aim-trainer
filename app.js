@@ -32,9 +32,9 @@ app.post('/join', function(req, res) {
     console.log("received sessionIdInput: " + sessionIdInput)
     //console.log("tf: " + sessions[sessionIdInput].startedTF())
     console.log("start status: " + Ama.checkStarted())
-    if (sessions[sessionIdInput] == null || sessions[sessionIdInput].started == false) {
+    if (Ama.checkStarted() == false) {
         res.status(404).json({success: false})
-    } else if (sessions[sessionIdInput].startedTF() == true) {
+    } else if (Ama.checkStarted() == true) {
         res.status(200).json({success: true})
     }
 })
