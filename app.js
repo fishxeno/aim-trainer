@@ -16,9 +16,13 @@ app.post('/', function (req, res) {
     const ownerId = nanoid()
     console.log(sessionId)
     sessions[sessionId] = new Ama();
+    const AMA = sessions[sessionId]
     console.log("sessions is : ")
-    sessions[sessionId].started = true;
-    console.log(sessions[sessionId])
+    AMA.owner(ownerId);
+    AMA.startedTF(true);
+    console.log(sessions)
+    console.log("AMA is: ")
+    console.log(AMA)
     res.status(201).json({ session_Id: sessionId, owner_Id: ownerId })
 })
 
@@ -33,6 +37,7 @@ app.post('/join', function (req, res) {
     console.log(Ama)
     console.log("received sessionIdInput: " + sessionIdInput)
     try {
+        console.log("ownerId" + Ama.checkOwnerId());
         console.log("start status: " + Ama.checkStarted())
         if (Ama.checkStarted() == true || Ama.checkStarted() == "true") {
             Ama.userName(userName);
