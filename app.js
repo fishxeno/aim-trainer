@@ -30,7 +30,7 @@ app.post('/join', function(req, res) {
     const Ama = sessions[sessionIdInput]
     console.log("received sessionIdInput: " + sessionIdInput)
     console.log("start status: " + Ama.checkStarted())
-    if (Ama.checkStarted() == false) {
+    if (Ama.checkStarted() == false || Ama == null) {
         console.log("false start")
         res.status(404).json({success: false})
     } else if (Ama.checkStarted() == true) {
