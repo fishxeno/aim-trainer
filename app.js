@@ -29,9 +29,11 @@ app.post('/join', function (req, res) {
     console.log(userName)
     console.log(sessionIdInput)
     const Ama = sessions[sessionIdInput]
+    console.log("below this is Ama")
+    console.log(Ama)
     console.log("received sessionIdInput: " + sessionIdInput)
     console.log("start status: " + Ama.checkStarted())
-    if (Ama != undefined) {
+    if (Ama != undefined || Ama == null) {
         if (Ama.checkStarted() == true || Ama.checkStarted() == "true") {
             Ama.userName(userName);
             console.log("true start")
