@@ -37,11 +37,12 @@ app.post('/join', function (req, res) {
     console.log(AMA)
     console.log("received sessionIdInput: " + sessionIdInput)
     if (typeof AMA === "undefined") {
+        res.status(404).json({ success: false })
     } else {
         console.log("ownerId" + AMA.checkOwnerId());
         console.log("start status: " + AMA.checkStarted())
         if (AMA.checkStarted() == true || AMA.checkStarted() == "true") {
-            AMA.userName(userName);
+            AMA.userNames(userName);
             console.log("true start")
             res.status(200).json({ success: true })
         } else {

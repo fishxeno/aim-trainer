@@ -15,7 +15,7 @@ module.exports = class {
     checkStarted() {
         return [this.started]
     }
-    userName(userName) {
+    userNames(userName) {
         this.userName.push(userName)
         return [this.userName];
     }
