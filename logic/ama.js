@@ -1,6 +1,6 @@
 module.exports = class {
     constructor() {
-        this.highScore = [];
+        this.highScore = {};
         this.userName = [];
         this.started = false;
         this.ownerId = "";
@@ -26,5 +26,14 @@ module.exports = class {
     startedTF(TF) {//true false
         this.started = TF;
         return [this.started];
+    }
+    highScore(text,id) {
+        //id is id of username
+        const strID = "" + id;//turns it into str
+        if (!(strID in this.highScore)) {//
+            this.highScore[strID] = [];
+        }
+        this["highScore"][strID].push(text);
+        return [this.highScore];
     }
 }
