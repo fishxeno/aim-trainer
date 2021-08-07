@@ -10,10 +10,10 @@ const Ama = require('./logic/ama');
 const fs = require('fs');
 
 function storeSessions(data) {
-    const data = JSON.stringify(user);
+    const sessions = JSON.stringify(data);
 
     // write JSON string to a file
-    fs.writeFile('sessions.json', data, (err) => {
+    fs.writeFile('sessions.json', sessions, (err) => {
         if (err) {
             throw err;
         }
