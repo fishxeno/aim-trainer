@@ -61,7 +61,6 @@ app.post('/submit', function (req, res) {
     var userId;
 
     const AMA = sessions[sessionId];
-    AMA.userName(userName)
     var userNames = AMA.getUserNames()
     for (var i = 0; i < userNames.length; i++) {
         if (userNames[i] == userName) {
