@@ -24,7 +24,7 @@ function returnSessions() {
 }
 
 
-var sessions = returnSessions();
+var sessions = JSON.parse(returnSessions());
 if (typeof sessions === 'undefined') {
     sessions = {}
 }
@@ -38,6 +38,7 @@ app.post('/', function (req, res) {
     const ownerId = nanoid()
     console.log(sessionId)
     sessions[sessionId] = new Ama();
+
     const AMA = sessions[sessionId]
     console.log("sessions is : ")
     AMA.owner(ownerId);
