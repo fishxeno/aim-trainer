@@ -57,14 +57,14 @@ app.post('/submit', function (req, res) {
 
     const sessionId = req.body.session_id.sessionId;
     const highScore = req.body.highScore;
-    const username = req.body.username;
+    const userName = req.body.username;
     var userId;
 
     const AMA = sessions[sessionId];
     AMA.userName(userName)
     var userNames = AMA.getUserNames()
     for (var i = 0; i < userNames.length; i++) {
-        if (userNames[i] == username) {
+        if (userNames[i] == userName) {
             userId = i;
             break;
         }
