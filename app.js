@@ -63,8 +63,12 @@ app.post('/submit', function (req, res) {
     var userNames = AMA.getUserNames()
     console.log("below this is usernames")
     console.log(userNames)
+    console.log(userName)
     for (var i = 0; i < userNames[0].length; i++) {
         if (userNames[i] == userName) {
+            console.log.userName("these 2 should be equal")
+            console.log(userNames[i])
+            console.log(userName)
             userId = i;
             console.log(userId)
             break;
