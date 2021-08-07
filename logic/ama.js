@@ -29,13 +29,13 @@ module.exports = class {
         this.started = TF;
         return [this.started];
     }
-    recordHighScore(score ,userId) {
+    recordHighScore(score, userId) {
         const StrScore = "" + score;
-        const strId = "" + userId;//turns it into str
-        if (!(strId in this.highScore)) {//if userid don't exist in the current highScore object array
-            this.highScore[strId] = [];
-        }
-        this["highScore"][strId].push(StrScore);
+        const StrId = "" + userId;//turn into string variables
+        console.log("strScore is: " + StrScore)
+        console.log("StrId: " + StrId);
+
+        this.highScore.StrId = StrScore; // highScore: {StrId : StrScore, StrId2 : StrScore2....} hopefully
         return [this.highScore];
     }
 }

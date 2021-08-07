@@ -64,6 +64,7 @@ app.post('/submit', function (req, res) {
     for (var i = 0; i < userNames.length; i++) {
         if (userNames[i] == userName) {
             userId = i;
+            console.log(userId)
             break;
         }
     }
