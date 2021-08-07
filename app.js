@@ -28,6 +28,7 @@ var sessions = returnSessions();
 if (typeof sessions === 'undefined') {
     sessions = {}
 }
+console.log("below here is sessions")
 console.log(sessions)
 
 app.post('/', function (req, res) {
