@@ -65,9 +65,9 @@ app.post('/submit', function (req, res) {
     console.log(userNames)
     console.log(userName)
     for (var i = 0; i < userNames[0].length; i++) {
-        if (userNames[i] == userName) {
+        if (userNames[0][i] == userName) {
             console.log("these 2 should be equal")
-            console.log(userNames[i])
+            console.log(userNames[0][i])
             console.log(userName)
             userId = i;
             console.log(userId)
