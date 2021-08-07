@@ -109,6 +109,9 @@ app.post('/submit', function (req, res) {
     AMA.recordHighScore(highScore, userId)
     console.log(AMA)
     storeSessions(sessions)
+    var test = returnSessions()
+    console.log("below here is testing json file")
+    console.log(test)
     res.status(200).json({ success: true })
 });
 
