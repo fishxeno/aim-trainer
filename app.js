@@ -22,6 +22,7 @@ function storeSessions(data) {
 }
 
 function returnSessions() {
+    console.log("reading")
     fs.readFile('sessions.json', 'utf-8', (err, data) => {
         if (err) {
             throw err;
@@ -29,6 +30,7 @@ function returnSessions() {
 
         // parse JSON object
         const sessions = JSON.parse(data.toString());
+        
         return sessions;
     });
 }
