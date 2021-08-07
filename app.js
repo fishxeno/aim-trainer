@@ -28,7 +28,7 @@ var sessions = returnSessions();
 if (typeof sessions === 'undefined') {
     sessions = {}
 }
-
+console.log(sessions)
 
 app.post('/', function (req, res) {
     console.log("request received")
