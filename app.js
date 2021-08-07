@@ -77,7 +77,7 @@ app.post('/leaderBoard', function (req, res) {
     const sessionId = req.body.session_id.sessionId;
     const AMA = sessions[sessionId]
 
-    res.status(200).json(AMA)
+    res.status(200).json({AMAttribute: AMA})
 })
 
 app.listen(process.env.PORT || 5000, function () {
