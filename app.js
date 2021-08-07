@@ -69,7 +69,7 @@ app.post('/submit', function (req, res) {
         }
     }
     AMA.recordHighScore(highScore,userId)
-    res.status(201).json(AMA)
+    res.status(201).json(AMA, {success: true})
 });
 
 app.get('/leaderBoard', function (req, res) {
