@@ -72,7 +72,7 @@ app.post('/submit', function (req, res) {
     res.status(200).json({ success: true })
 });
 
-app.get('/leaderBoard', function (req, res) {
+app.post('/leaderBoard', function (req, res) {
     const sessionId = req.body.session_id.sessionId;
     const AMA = sessions[sessionId]
 
