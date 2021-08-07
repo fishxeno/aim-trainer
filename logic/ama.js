@@ -19,6 +19,9 @@ module.exports = class {
         this.userName.push(userName)
         return [this.userName];
     }
+    getUserNames() {
+        return [this.userName];
+    }
     startedTF(TF) {//true false
         this.started = TF;
         return [this.started];

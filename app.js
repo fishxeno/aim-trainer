@@ -54,29 +54,33 @@ app.post('/join', function (req, res) {
 })
 
 app.post('/submit', function (req, res) {
-    const sessionId = req.query.session_id;
+
+    const sessionId = req.body.session_id.sessionId;
+    const highScore = req.body.highScore;
     const username = req.body.username;
-    const email = req.body.email;
-    const score = req.body.score;
+    var userId;
 
     const AMA = sessions[sessionId];
-    AMA.userName = username;
-    AMA.score = score;
-    AMA.email = email;
+    AMA.userName(userName)
+    var userNames = AMA.getUserNames()
+    for (var i = 0; i < userNames.length; i++) {
+        if (userNames[i] == username) {
+            userId = i;
+            break;
+        }
+    }
+    AMA.highScore(highScore,userId)
     res.status(201).json(AMA)
 });
 
 app.get('/leaderBoard', function (req, res) {
 
-    const sessionId = req.query.session_id;
-    var scoreArr = [];
-    var emailArr = [];
+    const sessionId = req.body.session_id.sessionId;
+    const AMA = sessions[sessionId]
 
     for (var i = 0; i < sessions.length; i++) {
         const keys = keysObject.keys(sessions)// return an array of emails
         const AMA = sessions[keys[i]];//the user details with email as key
-
-
 
     }
 })
