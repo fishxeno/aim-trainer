@@ -54,7 +54,6 @@ app.post('/join', function (req, res) {
 })
 
 app.post('/submit', function (req, res) {
-
     const sessionId = req.body.session_id.sessionId;
     const highScore = req.body.highScore;
     const userName = req.body.username;
@@ -69,6 +68,7 @@ app.post('/submit', function (req, res) {
         }
     }
     AMA.recordHighScore(highScore, userId)
+    console.log(AMA)
     res.status(200).json({ success: true })
 });
 
@@ -80,7 +80,6 @@ app.get('/leaderBoard', function (req, res) {
     for (var i = 0; i < sessions.length; i++) {
         const keys = keysObject.keys(sessions)// return an array of emails
         const AMA = sessions[keys[i]];//the user details with email as key
-
     }
 })
 
