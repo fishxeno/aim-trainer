@@ -22,6 +22,9 @@ module.exports = class {
     getUserNames() {
         return [this.userName];
     }
+    getHighScore() {
+        return [this.highScore]
+    }
     startedTF(TF) {//true false
         this.started = TF;
         return [this.started];
