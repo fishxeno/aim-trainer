@@ -9,31 +9,20 @@ const { customAlphabet } = require('nanoid')
 const Ama = require('./logic/ama');
 const fs = require('fs');
 
-function storeSessions(data) {
-    const sessions = JSON.stringify(data);
+// this will replace calling storeSessions
+// const sessionsData = JSON.stringify(sessions);
+// storeSessions(sessionsData)
 
-    // write JSON string to a file
-    fs.writeFile('sessions.json', sessions, (err) => {
-        if (err) {
-            throw err;
-        }
-        console.log("JSON data is saved.");
-    });
+function storeSessions(sessionsObject) {
+    const data = JSON.stringify(sessionsObject);
+    fs.writeFileSync("./sessions.json", data);
 }
 
 function returnSessions() {
-    console.log("reading")
-    fs.readFile('sessions.json', 'utf-8', (err, data) => {
-        if (err) {
-            throw err;
-        }
-
-        // parse JSON object
-        const sessions = JSON.parse(data.toString());
-        
-        return sessions;
-    });
+    return (fs.readFileSync('./sessions.json',
+        { encoding: 'utf8', flag: 'r' }))
 }
+
 
 var sessions = returnSessions();
 if (typeof sessions === 'undefined') {
