@@ -55,8 +55,8 @@ app.post('/join', function (req, res) {
 
 app.post('/submit', function (req, res) {
     const sessionId = req.body.session_id.sessionId;
-    const highScore = req.body.highScore;
-    const userName = req.body.username;
+    const highScore = req.body.highScore.highScore;
+    const userName = req.body.userName.userName;
     var userId;
 
     const AMA = sessions[sessionId];

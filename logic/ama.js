@@ -32,10 +32,11 @@ module.exports = class {
     recordHighScore(score, userId) {
         const StrScore = "" + score;
         const StrId = "" + userId;//turn into string variables
+        
         console.log("strScore is: " + StrScore)
         console.log("StrId: " + StrId);
 
-        this.highScore.StrId = StrScore; // highScore: {StrId : StrScore, StrId2 : StrScore2....} hopefully
+        this.highScore[StrId] = StrScore; // highScore: {StrId : StrScore, StrId2 : StrScore2....} hopefully
         return [this.highScore];
     }
 }
