@@ -73,14 +73,10 @@ app.post('/submit', function (req, res) {
 });
 
 app.get('/leaderBoard', function (req, res) {
-
     const sessionId = req.body.session_id.sessionId;
     const AMA = sessions[sessionId]
 
-    for (var i = 0; i < sessions.length; i++) {
-        const keys = keysObject.keys(sessions)// return an array of emails
-        const AMA = sessions[keys[i]];//the user details with email as key
-    }
+    res.status(200).json(AMA)
 })
 
 app.listen(process.env.PORT || 5000, function () {
