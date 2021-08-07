@@ -7,7 +7,37 @@ app.use(express.json());
 const { customAlphabet } = require('nanoid')
 
 const Ama = require('./logic/ama');
-const sessions = {};
+const fs = require('fs');
+
+function storeSessions(data) {
+    const data = JSON.stringify(user);
+
+    // write JSON string to a file
+    fs.writeFile('sessions.json', data, (err) => {
+        if (err) {
+            throw err;
+        }
+        console.log("JSON data is saved.");
+    });
+}
+
+function returnSessions() {
+    fs.readFile('sessions.json', 'utf-8', (err, data) => {
+        if (err) {
+            throw err;
+        }
+
+        // parse JSON object
+        const sessions = JSON.parse(data.toString());
+        return sessions;
+    });
+}
+
+var sessions = returnSessions();
+if (typeof sessions === 'undefined') {
+    sessions = {}
+}
+
 
 app.post('/', function (req, res) {
     console.log("request received")
@@ -23,6 +53,7 @@ app.post('/', function (req, res) {
     console.log(sessions)
     console.log("AMA is: ")
     console.log(AMA)
+    storeSessions(sessions)
     res.status(201).json({ session_Id: sessionId, owner_Id: ownerId })
 })
 
@@ -45,6 +76,7 @@ app.post('/join', function (req, res) {
             AMA.userNames(userName);
             console.log(userName)
             console.log("true start")
+            storeSessions(sessions)
             res.status(200).json({ success: true })
         } else {
             console.log("false start")
@@ -76,14 +108,15 @@ app.post('/submit', function (req, res) {
     }
     AMA.recordHighScore(highScore, userId)
     console.log(AMA)
+    storeSessions(sessions)
     res.status(200).json({ success: true })
 });
 
 app.post('/leaderBoard', function (req, res) {
     const sessionId = req.body.session_id.sessionId;
     const AMA = sessions[sessionId]
-
-    res.status(200).json({AMAttribute: AMA})
+    storeSessions(sessions)
+    res.status(200).json({ AMAttribute: AMA })
 })
 
 app.listen(process.env.PORT || 5000, function () {
