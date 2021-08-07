@@ -26,7 +26,7 @@ module.exports = class {
         this.started = TF;
         return [this.started];
     }
-    highScore(score ,userId) {
+    recordHighScore(score ,userId) {
         const StrScore = "" + score;
         const strId = "" + userId;//turns it into str
         if (!(strId in this.highScore)) {//if userid don't exist in the current highScore object array
