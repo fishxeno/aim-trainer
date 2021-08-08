@@ -53,27 +53,30 @@ app.post('/', function (req, res) {
 app.post('/join', function (req, res) {
     const sessionIdInput = req.body.session_id.sessionIdInput;
     const userName = req.body.userName.userName;
-    console.log(sessions)
-    console.log(userName)
-    console.log(sessionIdInput)
     const AMA = sessions[sessionIdInput]
-    console.log("below this is Ama")
-    console.log(AMA)
-    console.log("received sessionIdInput: " + sessionIdInput)
+    var userNameGood = true;
     if (typeof AMA === "undefined") {
         res.status(404).json({ success: false })
     } else {
         console.log("ownerId" + AMA.checkOwnerId());
         console.log("start status: " + AMA.checkStarted())
         if (AMA.checkStarted() == true || AMA.checkStarted() == "true") {
+            for (var f = 0; f < AMA.userName.length; f++) {
+                if (userName == AMA.userName[f]) {
+                    userNameGood = false
+                }
+            }
+            if (userNameGood == false) {
+                res.status(400).json({ success: false, badUserName: true})
+            }
             AMA.userNames(userName);
             console.log(userName)
             console.log("true start")
             storeSessions(sessions)
-            res.status(200).json({ success: true })
+            res.status(200).json({ success: true, badUserName: false })
         } else {
             console.log("false start")
-            res.status(404).json({ success: false })
+            res.status(404).json({ success: false, badUserName: true })
         }
     }
 })
