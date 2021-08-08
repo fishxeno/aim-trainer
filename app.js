@@ -67,13 +67,15 @@ app.post('/join', function (req, res) {
                 }
             }
             if (userNameGood == false) {
-                res.status(400).json({ success: false, badUserName: true})
+                res.status(400).json({ success: false, badUserName: true })
+            } else {
+                AMA.userNames(userName);
+                console.log(userName)
+                console.log("true start")
+                storeSessions(sessions)
+                res.status(200).json({ success: true, badUserName: false })
             }
-            AMA.userNames(userName);
-            console.log(userName)
-            console.log("true start")
-            storeSessions(sessions)
-            res.status(200).json({ success: true, badUserName: false })
+
         } else {
             console.log("false start")
             res.status(404).json({ success: false, badUserName: true })
